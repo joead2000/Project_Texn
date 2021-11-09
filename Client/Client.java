@@ -1,5 +1,3 @@
-package main.test_client;
-
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -8,8 +6,10 @@ import java.util.Scanner;
 
 
 public class Client {
-    public client() {
+    public Client(int x) {
+        System.out.println("starting client");
         try (Socket socket = new Socket("localhost", 5000)){
+            System.out.println("Connected to server");
             //reading the input from server
             BufferedReader input = new BufferedReader( new InputStreamReader(socket.getInputStream()));
             
@@ -23,7 +23,7 @@ public class Client {
             String response;
             String clientName = "empty";
 
-            clientRunnable clientRun = new clientRunnable(socket);
+            ClientRunnable clientRun = new ClientRunnable(socket);
 
 
             new Thread(clientRun).start();
