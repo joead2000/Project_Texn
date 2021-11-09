@@ -4,6 +4,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import packets.loginPacket;
+import packets.loginResponsePacket;
+
 public class ClientRunnable implements Runnable {
     private Socket socket;
     private BufferedReader input;
@@ -20,7 +23,10 @@ public class ClientRunnable implements Runnable {
             try {
                 while(true) {
                     String response = input.readLine();
-                    System.out.println(response);
+                    //handle
+                    /*if (packet instanceof loginResponsePacket) {
+                        loginResponsePacket lp = (loginResponsePacket)packet;
+                    }*/
                 }
             } catch (IOException e) {
                 e.printStackTrace();

@@ -12,11 +12,9 @@ public class Server {
             while(true) {
                 Socket socket = serversocket.accept();
                 ServerThread serverThread = new ServerThread(socket, this);
-                //starting the thread
+                
                 threads.add(serverThread); 
                 serverThread.start();
-
-                //get all the list of currently running thread
             }
         } catch (Exception e) {
             System.out.println("Error occured in main: " + e.getStackTrace());
