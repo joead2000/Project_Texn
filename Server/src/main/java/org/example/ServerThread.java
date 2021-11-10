@@ -1,5 +1,7 @@
 package org.example;
 
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
@@ -24,10 +26,6 @@ public class ServerThread extends Thread {
 
             while (true) {
                 String outputString = input.readLine();
-                if (outputString.equals("exit")) {
-                    break;
-                }
-                server.printToALlClients(outputString);
             }
         } catch (Exception e) {
             System.out.println("Error occured " +e.getStackTrace());
