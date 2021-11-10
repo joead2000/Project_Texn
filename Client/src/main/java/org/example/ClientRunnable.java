@@ -1,11 +1,10 @@
+package org.example;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-
-import packets.loginPacket;
-import packets.loginResponsePacket;
 
 public class ClientRunnable implements Runnable {
     private Socket socket;
@@ -19,23 +18,20 @@ public class ClientRunnable implements Runnable {
     }
     @Override
     public void run() {
-        
-            try {
-                while(true) {
-                    String response = input.readLine();
-                    //handle
-                    /*if (packet instanceof loginResponsePacket) {
-                        loginResponsePacket lp = (loginResponsePacket)packet;
-                    }*/
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    input.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
+        try {
+            while(true) {
+                String response = input.readLine();
+                //handle
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                input.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
