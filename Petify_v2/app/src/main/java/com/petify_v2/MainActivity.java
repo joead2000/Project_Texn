@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listViewSong);
+        DataBaseConnection conn = new DataBaseConnection();
+        conn.getConnection();
 
 
         runtimePermission();

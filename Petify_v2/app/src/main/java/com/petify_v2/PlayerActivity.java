@@ -2,6 +2,7 @@ package com.petify_v2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
@@ -12,6 +13,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +23,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.gauravk.audiovisualizer.visualizer.BarVisualizer;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.File;
 import java.io.Serializable;
@@ -87,7 +90,25 @@ public class PlayerActivity extends AppCompatActivity {
         btninfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlayerActivity.this, SongInfo.class));
+
+                final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
+                        PlayerActivity.this, R.style.SongInfoBottomSheet
+                );
+                View songInfoSheetView = LayoutInflater.from(PlayerActivity.this)
+                        .inflate(
+                                R.layout.song_info_bottom_sheet,
+                                (ConstraintLayout) findViewById(R.id.songInfoSheet)
+                        );
+                songInfoSheetView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        bottomSheetDialog.dismiss();
+                    }
+                });
+                bottomSheetDialog.setContentView(songInfoSheetView);
+                bottomSheetDialog.show();
+
             }
         });
 
@@ -182,22 +203,22 @@ public class PlayerActivity extends AppCompatActivity {
         /*
          *TODO(name):Make the Replay button working as expected
          */
-        btnreplay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mediaPlayer.isPlaying() && !mediaPlayer.isLooping()) {
-                    btnreplay.setBackgroundResource(R.drawable.ic_replayoff);
-                    mediaPlayer.setLooping(true);
-
-                }
-                if (mediaPlayer.isLooping())
-                {
-                    btnreplay.setBackgroundResource(R.drawable.ic_replay);
-                    mediaPlayer.setLooping(false);
-
-                }
-            }
-        });
+//        btnreplay.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mediaPlayer.isPlaying() && !mediaPlayer.isLooping()) {
+//                    btnreplay.setBackgroundResource(R.drawable.ic_replayoff);
+//                    mediaPlayer.setLooping(true);
+//
+//                }
+//                if (mediaPlayer.isLooping())
+//                {
+//                    btnreplay.setBackgroundResource(R.drawable.ic_replay);
+//                    mediaPlayer.setLooping(false);
+//
+//                }
+//            }
+//        });
 
 
         btnplay.setOnClickListener(new View.OnClickListener() {
