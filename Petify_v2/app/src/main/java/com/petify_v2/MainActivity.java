@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.Manifest;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -27,9 +25,6 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.File;
 import java.io.Serializable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.HashMap;
@@ -46,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listViewSong);
+        DataBaseConnection conn = new DataBaseConnection();
+        conn.getConnection();
 
 
         runtimePermission();
@@ -54,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void runtimePermission() {
-        Dexter.withContext(this).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO).withListener(new MultiplePermissionsListener() {
+        Dexter.withContext(this).withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.RECORD_AUDIO).withListener(new MultiplePermissionsListener() {
             @Override
             public void onPermissionsChecked(MultiplePermissionsReport multiplePermissionsReport) {
                 displaySongs();
@@ -70,12 +67,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public List<File> findSong(File file) {
+
+
+
+
+
+    public List<File> findSong (File file)
+    {
         List<File> songsList = new ArrayList<>();
 
 
+
         File[] files = file.listFiles();
-        if (files != null) {
+        if(files!=null) {
             for (File singlefile : files) {
                 if (singlefile.isDirectory() && !singlefile.isHidden()) {
                     songsList.addAll(findSong(singlefile));
@@ -89,17 +93,17 @@ public class MainActivity extends AppCompatActivity {
         return songsList;
     }
 
-    void displaySongs() {
+    void displaySongs(){
 
 
-        // final List<File> mySongs = findSong(Environment.getExternalStorageDirectory());
+       // final List<File> mySongs = findSong(Environment.getExternalStorageDirectory());
         final List<File> mySongs = findSong(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC));
         items = new String[mySongs.size()];
-        for (int i = 0; i < mySongs.size(); i++) {
-            items[i] = mySongs.get(i).getName().toString().replace(".mp3", "").replace(".wav", "");
+        for(int i=0;i<mySongs.size();i++){
+            items[i]=mySongs.get(i).getName().toString().replace(".mp3","").replace(".wav","");
 
         }
-        // ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
+       // ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
         //listView.setAdapter(myAdapter);
         customAdapter customAdapter = new customAdapter();
         listView.setAdapter(customAdapter);
@@ -108,16 +112,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
 
-                String songName = (String) listView.getItemAtPosition(i);
-                startActivity(new Intent(getApplicationContext(), PlayerActivity.class).putExtra("songs", (Serializable) mySongs).putExtra("songname", songName).putExtra("pos", i));
+            String songName=(String) listView.getItemAtPosition(i);
+            startActivity(new Intent(getApplicationContext(),PlayerActivity.class).putExtra("songs", (Serializable) mySongs).putExtra("songname",songName).putExtra("pos",i));
 
             }
         });
 
 
+
+
+
     }
 
-    class customAdapter extends BaseAdapter {
+    class customAdapter extends BaseAdapter
+    {
 
         @Override
         public int getCount() {
@@ -136,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            View myView = getLayoutInflater().inflate(R.layout.list_item, null);
+            View myView = getLayoutInflater().inflate(R.layout.list_item,null);
             TextView textsong = myView.findViewById(R.id.txtsongname);
             textsong.setSelected(true);
 
