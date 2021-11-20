@@ -47,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listViewSong);
 
+        User user = (User) getIntent().getSerializableExtra("user");
+
+
 
         runtimePermission();
-
-
     }
 
     public void runtimePermission() {
