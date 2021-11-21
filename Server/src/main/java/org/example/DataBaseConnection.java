@@ -11,7 +11,9 @@ public class DataBaseConnection {
 
         public Connection getConnection() {
             try {
-                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "petify", "1234");
+                connection = DriverManager.getConnection(Config.getInstance.get("database_url"),
+                        Config.getInstance.get("database_user"),
+                        Config.getInstance.get("database_password"));
                 System.out.println("Connection Established");
             } catch (SQLException throwable) {
                 System.out.println("Unable to connect!");
