@@ -7,10 +7,12 @@ import java.net.Socket;
 
 
 public class Client {
+    public static Client getInstance;
     BufferedReader input;
     PrintWriter output;
 
     public Client() {
+        getInstance = this;
         System.out.println("starting client");
         try (Socket socket = new Socket("10.0.2.2", 5000)){
             System.out.println("Connected to server");
@@ -24,11 +26,16 @@ public class Client {
             while (true) {}
 
         } catch (Exception e) {
-            System.out.println("Exception occured in client main: " + e.getMessage());
+            System.out.println("Exception occured in client main: " + e.getStackTrace() + " | " + e.getMessage());
         }
     }
 
     public void SendMessage(String json) {
-        output.println(json);
+        try {
+            output.println(json);
+            output.flush();
+        } catch(Exception ex) {
+            System.out.println("SendMessage Exception: " + ex.getMessage() + " | " + ex.getStackTrace());
+        }
     }
 }
