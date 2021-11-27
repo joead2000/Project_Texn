@@ -25,7 +25,7 @@ import java.util.Map;
 public class UserRepositoryService {
 
     public static void registerUser(String username, String email, String password, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
-        String URL = " http://3c7b-2-85-60-198.ngrok.io/registration";
+        String URL = " https://a1cc-45-139-212-103.ngrok.io/registration";
 
         JsonObjectRequest request = new JsonObjectRequest
                 (Request.Method.POST, URL, null, new Response.Listener<JSONObject>() {
