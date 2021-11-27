@@ -55,4 +55,25 @@ export class postgres {
             }
         })
     }
+
+    async forgotPassword(email: string, callback: Function, errorCallback: Function) {
+        const query = "SELECT * FROM users WHERE email=$1"
+        const values = [email]
+
+        await postgres.getInstance.client.query(query, values, (err, res) => {
+            if (err) {
+                console.log(err)
+                errorCallback()
+            } else {
+                if (res && res.rows) {
+                    if (res.rows.length > 0) {
+                        const password = res.rows.password
+                        if (password && password.length > 0) {
+                            callback(password)
+                        }
+                    }
+                }
+            }
+        })
+    }
 }

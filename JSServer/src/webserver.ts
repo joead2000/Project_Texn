@@ -1,5 +1,6 @@
 import { urlencoded, json }  from 'express';
 import express = require('express');
+import { emailManager } from './emailManager';
 import { postgres } from './postgres';
 
 export async function create() {
@@ -28,6 +29,15 @@ export async function create() {
             res.status(200).send(JSON.stringify({ result: 'fail' }));
         }, () => {
             res.status(200).send(JSON.stringify({ result: 'success' }));
+        })
+    });
+    app.route('/forgot_password').post((req: express.Request, res: express.Response) => { 
+        const email = req.body.email
+        postgres.getInstance.forgotPassword(email, (password) => {
+            res.status(200).send(JSON.stringify({ result: 'success' }));
+            emailManager.getInstance.sendEmail(email, 'Forgot Password', 'Your password is: ' + password);
+        }, () => {
+            res.status(200).send(JSON.stringify({ result: 'fail' }));
         })
     });
 
