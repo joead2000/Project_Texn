@@ -2,7 +2,6 @@ package com.petify_v2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,54 +12,55 @@ import android.widget.Toast;
 import com.petify_v2.R;
 import com.petify_v2.model.Album;
 import com.petify_v2.model.IVolleyCallBackMessage;
+import com.petify_v2.model.RequestAlbumInfo;
 import com.petify_v2.model.RequestArtistInfo;
 
 import java.util.List;
 
-public class ArtistsInfo extends AppCompatActivity {
-    Button btnfind1;
-    EditText artistname;
-    TextView artistInfo;
-
+public class ViewAlbumsActivity extends AppCompatActivity {
+    Button btnfind2;
+    EditText nameofartist;
+    TextView textViewAlbum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_artists_info);
-
-        btnfind1 = findViewById(R.id.btnfind1);
-
-       artistname=findViewById(R.id.editTextArtist);
-       artistInfo=findViewById(R.id.artistInfo);
+        setContentView(R.layout.activity_view_albums);
+        btnfind2 = findViewById(R.id.btnfind2);
+        nameofartist = findViewById(R.id.nameofartist);
+        textViewAlbum = findViewById(R.id.textViewAlbum);
 
 
-
-
-        btnfind1.setOnClickListener(new View.OnClickListener() {
+        btnfind2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!artistname.getText().toString().isEmpty()) {
-                    RequestArtistInfo.artistInfo(artistname.getText().toString().trim(), ArtistsInfo.this, new IVolleyCallBackMessage() {
+                if (!nameofartist.getText().toString().isEmpty()) {
+                    RequestAlbumInfo.textViewAlbum(nameofartist.getText().toString().trim(), ViewAlbumsActivity.this, new IVolleyCallBackMessage() {
                         @Override
                         public void onSuccess(String message) {
-                            artistInfo.setText(message);
+
 
                         }
 
                         @Override
                         public void onSuccessInfo(List<Album> albums) {
+                            for (Album album : albums) {
+                                textViewAlbum.setText(textViewAlbum.getText() + album.toString());
+
+                            }
+
 
                         }
 
                         @Override
                         public void onWarning(String message) {
-                            Toast.makeText(ArtistsInfo.this, message, Toast.LENGTH_LONG).show();
+                            Toast.makeText(ViewAlbumsActivity.this, message, Toast.LENGTH_LONG).show();
 
                         }
 
                         @Override
                         public void onError(String message) {
-                            Toast.makeText(ArtistsInfo.this, message, Toast.LENGTH_LONG).show();
+                            Toast.makeText(ViewAlbumsActivity.this, message, Toast.LENGTH_LONG).show();
 
                         }
                     });
@@ -76,3 +76,20 @@ public class ArtistsInfo extends AppCompatActivity {
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

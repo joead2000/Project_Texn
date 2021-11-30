@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 import com.petify_v2.R;
 import com.petify_v2.controller.UserController;
+import com.petify_v2.model.Album;
 import com.petify_v2.model.IVolleyCallBackMessage;
 
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -37,6 +39,11 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(String message) {
                         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onSuccessInfo(List<Album> albums) {
+
                     }
 
                     @Override

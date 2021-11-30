@@ -26,12 +26,20 @@ public class MainActivity extends AppCompatActivity {
     ListView listView;
     String[] items;
     Button btngotofind;
+    Button btnfindalbum;
 
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnfindalbum = findViewById(R.id.btnfindalbum);
+        btnfindalbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ViewAlbumsActivity.class));
+            }
+        });
         btngotofind = findViewById(R.id.btngotofind);
         btngotofind.setOnClickListener(new View.OnClickListener() {
             @Override

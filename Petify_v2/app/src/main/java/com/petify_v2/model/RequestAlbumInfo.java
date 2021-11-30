@@ -1,5 +1,6 @@
 package com.petify_v2.model;
 
+
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -19,14 +20,16 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
-public class RequestArtistInfo {
+public class RequestAlbumInfo {
 
-    public static void artistInfo(String artist, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
-        String URL = "https://www.theaudiodb.com/api/v1/json/2/search.php?s="+artist;
+    public static void textViewAlbum(String artist, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
+        String URL = "https://theaudiodb.com/api/v1/json/2/discography.php?s="+artist;
         System.out.println(URL);
 
 
@@ -34,14 +37,25 @@ public class RequestArtistInfo {
                 (Request.Method.GET, URL, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        try {
 
-                            try {
+                            List<Album> albums = new ArrayList<>();
+                            for (int i = 0; i < response.getJSONArray("album").length(); i++) {
+                                String title = response.getJSONArray("album").getJSONObject(i).getString("strAlbum");
+                                String year = response.getJSONArray("album").getJSONObject(i).getString("intYearReleased");
+                                albums.add(new Album(title,year));
 
-                                volleyCallBackMessage.onSuccess(response.getJSONArray("artists").getJSONObject(0).getString("strBiographyEN"));
-                            } catch (JSONException e) {
-                                volleyCallBackMessage.onSuccess("JSON error");
+
                             }
+                            volleyCallBackMessage.onSuccessInfo(albums);
 
+
+
+
+
+                        } catch (JSONException e) {
+                            volleyCallBackMessage.onSuccess("JSON error");
+                        }
                     }
                 }, new Response.ErrorListener() {
                     @Override

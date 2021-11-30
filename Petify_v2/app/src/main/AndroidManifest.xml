@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Petify_v2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.ViewAlbumsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.ArtistsInfo"
             android:exported="false" />
         <activity
@@ -36,7 +39,7 @@
             android:exported="false" />
         <activity
             android:name=".view.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>
