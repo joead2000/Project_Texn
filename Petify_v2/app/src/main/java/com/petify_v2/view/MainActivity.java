@@ -2,7 +2,7 @@ package com.petify_v2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,25 +19,45 @@ import com.petify_v2.R;
 import com.petify_v2.model.User;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     ListView listView;
     String[] items;
+    Button btngotofind;
+    Button btnfindalbum;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        btnfindalbum = findViewById(R.id.btnfindalbum);
+        btnfindalbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ViewAlbumsActivity.class));
+            }
+        });
+        btngotofind = findViewById(R.id.btngotofind);
+        btngotofind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ArtistsInfo.class));
+            }
+        });
 
-        listView = findViewById(R.id.listViewSong);
+
+
+
+        //listView = findViewById(R.id.listViewSong);
 
         User user = (User) getIntent().getSerializableExtra("user");
 
         runtimePermission();
     }
+
 
     public void runtimePermission() {
 
