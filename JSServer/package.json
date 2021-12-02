@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/axios": "^0.14.0",
+    "@types/jest": "^27.0.3",
     "@types/node": "^16.11.9",
     "@types/nodemailer": "^6.4.4",
     "axios": "^0.24.0",
@@ -22,8 +23,10 @@
     "dotenv": "^10.0.0",
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",
+    "jest": "^27.4.3",
     "nodemailer": "^6.7.2",
     "pg": "^8.7.1",
+    "ts-jest": "^27.0.7",
     "ts-node": "^10.4.0"
   }
 }

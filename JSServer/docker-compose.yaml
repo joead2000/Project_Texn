@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  server:
+    build: .
+    volumes:
+        - "./:/JSServer"
+    ports:
+        - "65535:65535"
+
+  db:
+    restart: always
+    image: postgres
+    hostname: localhost
+    environment:
+      POSTGRES_DB: ergasia
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: newpassword
+    ports:
+      - "5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
