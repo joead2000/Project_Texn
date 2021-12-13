@@ -1,5 +1,6 @@
 import { urlencoded, json }  from 'express';
 import express = require('express');
+import { audioDB } from './audioDB';
 import { emailManager } from './emailManager';
 import { postgres } from './postgres';
 
@@ -38,6 +39,18 @@ export async function create() {
             emailManager.getInstance.sendEmail(email, 'Forgot Password', 'Your password is: ' + password);
         }, () => {
             res.status(200).send(JSON.stringify({ result: 'fail' }));
+        })
+    });
+    app.route('/artistBiography').post((req: express.Request, res: express.Response) => { 
+        const artist = req.body.artist
+        audioDB.getInstance.requestBiography(artist, async (biography) => { 
+            res.status(200).send(JSON.stringify({ result: 'success', artist: biography }));
+        })
+    });
+    app.route('/artistAlbums').post((req: express.Request, res: express.Response) => { 
+        const artist = req.body.artist
+        audioDB.getInstance.requestAlbums(artist, async (albums) => { 
+            res.status(200).send(JSON.stringify({ result: 'success', artist: albums }));
         })
     });
 

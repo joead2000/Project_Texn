@@ -7,16 +7,16 @@ export class cacheManager {
         cacheManager.getInstance = this;
     }
 
-    set(key: string, value: any, deleteTime: number = 8.64e+7 /*default - 1 hour - in ms*/) {
+    async set(key: string, value: any, deleteTime: number = 8.64e+7 /*default - 1 hour - in ms*/) {
         this.cache[key] = value;
         setTimeout(() => {
             delete this.cache[key];
         }, deleteTime);
     }
-    get(key: string) {
+    async get(key: string) {
         return this.cache[key] || undefined;
     }
-    exists(key: string) {
+    async exists(key: string) {
         return this.cache[key] !== undefined && this.cache[key] !== null;
     } 
 }
