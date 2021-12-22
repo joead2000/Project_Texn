@@ -2,6 +2,9 @@ package com.petify_v2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//
+//import androidx.appcompat.app.AppCompatActivity;
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
@@ -14,22 +17,24 @@ import com.petify_v2.R;
 import com.petify_v2.model.Album;
 import com.petify_v2.model.IVolleyCallBackMessage;
 import com.petify_v2.model.RequestArtistInfo;
-
+//
 import java.util.List;
-
+//
 public class ArtistsInfo extends AppCompatActivity {
+
+
     Button btnfind1;
     EditText artistname;
     TextView artistInfo;
-
-
+//
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artists_info);
-
+//
         btnfind1 = findViewById(R.id.btnfind1);
-
+//
        artistname=findViewById(R.id.editTextArtist);
        artistInfo=findViewById(R.id.artistInfo);
 
@@ -40,10 +45,13 @@ public class ArtistsInfo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!artistname.getText().toString().isEmpty()) {
-                    RequestArtistInfo.artistInfo(artistname.getText().toString().trim(), ArtistsInfo.this, new IVolleyCallBackMessage() {
+                   RequestArtistInfo.textViewAlbum(artistname.getText().toString().trim(),
+                           ArtistsInfo.this, new IVolleyCallBackMessage() {
+
                         @Override
                         public void onSuccess(String message) {
                             artistInfo.setText(message);
+                            //Toast.makeText(ArtistsInfo.this, message, Toast.LENGTH_LONG).show();
 
                         }
 
