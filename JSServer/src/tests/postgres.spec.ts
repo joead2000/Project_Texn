@@ -6,7 +6,7 @@ const email = "test@gmail.com"
 const username = "test"
 const password = "test"
 
-test('biography length should not be 0', async() => {
+test('test the register, login and forgot password functions', async() => {
     await p.register(email, username, password, () => {}, () => {});
     await p.login(username, password, () => {}, () => { expect(true).toBe(true) });
     await p.forgotPassword(email, (password) => { expect(password).toBe(password) }, () => {})
