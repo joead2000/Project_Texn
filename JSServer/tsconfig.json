@@ -6,10 +6,13 @@
         "noImplicitAny": false ,
         "jsx": "preserve",
         "strictFunctionTypes": true,
-        "sourceMap": true
+        "sourceMap": true,
+        "outDir": "dist"
     },
+    "include": ["src/**/*"],
     "exclude": [
         "node_modules",
-        "**/node_modules/*"
+        "**/node_modules/*",
+        "**/*.spec.ts"
     ]
 }

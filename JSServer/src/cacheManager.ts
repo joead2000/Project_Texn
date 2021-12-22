@@ -14,9 +14,14 @@ export class cacheManager {
         }, deleteTime);
     }
     async get(key: string) {
+        console.log(this.cache.key)
         return this.cache[key] || undefined;
     }
     async exists(key: string) {
         return this.cache[key] !== undefined && this.cache[key] !== null;
     } 
+
+    length() {
+        return Object.keys(this.cache).length;
+    }
 }
