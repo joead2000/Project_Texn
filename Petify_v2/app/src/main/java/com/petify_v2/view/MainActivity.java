@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 
 import com.petify_v2.R;
+import com.petify_v2.Utils.PlayYoutubeVideos;
 import com.petify_v2.model.User;
 
 import java.io.File;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     String[] items;
     Button btngotofind;
     Button btnfindalbum;
+    Button openyoutubebtn;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -45,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ArtistsInfo.class));
+            }
+        });
+
+        openyoutubebtn = findViewById(R.id.openYoutubeFormbtn);
+        openyoutubebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PlayYoutubeVideos.class));
             }
         });
 

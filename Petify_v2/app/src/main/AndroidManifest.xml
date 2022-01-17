@@ -17,6 +17,9 @@
         android:theme="@style/Theme.Petify_v2"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".Utils.PlayYoutubeVideos"
+            android:exported="false" />
+        <activity
             android:name=".view.ViewAlbumsActivity"
             android:exported="false" />
         <activity
