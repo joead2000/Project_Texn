@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JsonAlbumMapper {
+
     public static Album toAlbum(JSONObject jsonObject) throws InvalidArgumentException {
         try {
 
