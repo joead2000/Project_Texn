@@ -29,7 +29,7 @@ public class PlayYoutubeVideos extends AppCompatActivity {
 
 
 
-                    String videotitle = videoTitle.getText().toString();
+                    String videotitle = videoTitle.getText().toString().trim();
                 if (videotitle.isEmpty()) {
                     Toast.makeText(PlayYoutubeVideos.this, "Please write something for search!",
                             Toast.LENGTH_LONG).show();
