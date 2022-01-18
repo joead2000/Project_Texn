@@ -43,8 +43,8 @@ export async function create() {
     });
     app.route('/artistBiography').post((req: express.Request, res: express.Response) => { 
         const artist = req.body.artist
-        audioDB.getInstance.requestBiography(artist, async (biography) => { 
-            res.status(200).send(JSON.stringify({ result: 'success', artist: biography }));
+        audioDB.getInstance.requestBiography(artist, async (biography, img) => { 
+            res.status(200).send(JSON.stringify({ result: 'success', artist: biography, img: img }));
         })
     });
     app.route('/artistAlbums').post((req: express.Request, res: express.Response) => { 
