@@ -5,7 +5,7 @@ const adb = new audioDB();
 new cacheManager();
 
 test('biography length should not be 0', async() => {
-  await adb.requestBiography('drake', (artist) => {
+  await adb.requestBiography('drake', (artist, img) => {
     expect(artist.length).not.toBe(0)
     expect(artist).not.toBe('no artist found!')
   });

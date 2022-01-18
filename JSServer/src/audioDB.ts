@@ -1,4 +1,5 @@
 import axios from 'axios'
+import imageToBase64 = require('image-to-base64');
 import { cacheManager } from './cacheManager';
 
 export class audioDB { 
@@ -18,13 +19,16 @@ export class audioDB {
     console.log('requesting')
     await axios.get(`https://www.theaudiodb.com/api/v1/json/2/search.php?s=${artist}`).then(async res => {
         let artist = ''
+        let img = '';
         if (res.data.artists.length <= 0) artist = 'no artist found!'
         else {
             artist = res.data.artists[0].strBiographyEN
+            img = res.data.artists[0].strArtistThumb;
+            img = await imageToBase64(img);
             await cacheManager.getInstance.set(artist, artist + '', 8.64e+7)
         }
 
-        callback(artist)
+        callback(artist, img)
         })
     }
     async requestAlbums(artist: string, callback: Function) {
