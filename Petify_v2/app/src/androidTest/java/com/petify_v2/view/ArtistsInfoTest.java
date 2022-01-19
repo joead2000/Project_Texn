@@ -16,20 +16,18 @@ import com.petify_v2.R;
 
 @RunWith(AndroidJUnit4.class)
 
-public class youtubeSearchTest {
+public class ArtistsInfoTest {
 
 
     @Rule
-    public ActivityScenarioRule<LoginActivity> activityRule
-            = new ActivityScenarioRule<>(LoginActivity.class);
+    public ActivityScenarioRule<ArtistsInfo> activityRule
+            = new ActivityScenarioRule<>(ArtistsInfo.class);
 
     @Test
-    public void youtubeSearchTest()
+    public void ArtistSearchTest()
     {
-        onView(withId(R.id.btnskip)).perform(click());
-        onView(withId(R.id.openYoutubeFormbtn)).perform(click());
-        onView(withId(R.id.videoTitle)).perform(typeText("The Prince Karma"), closeSoftKeyboard());
-        onView(withId(R.id.searchButton)).perform(click());
+        onView(withId(R.id.editTextArtist)).perform(typeText("The Weekend"), closeSoftKeyboard());
+        onView(withId(R.id.btnfind1)).perform(click());
 
 
     }
