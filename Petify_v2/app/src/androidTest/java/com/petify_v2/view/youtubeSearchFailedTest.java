@@ -33,7 +33,7 @@ public class youtubeSearchFailedTest {
     {
         onView(withId(R.id.btnskip)).perform(click());
         onView(withId(R.id.openYoutubeFormbtn)).perform(click());
-        onView(withId(R.id.videoTitle)).perform(typeText("     "), closeSoftKeyboard());
+        onView(withId(R.id.videoTitle)).perform(typeText("       "), closeSoftKeyboard());
         onView(withId(R.id.searchButton)).perform(click());
 
 
