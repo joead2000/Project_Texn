@@ -21,7 +21,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import com.petify_v2.R;
 @RunWith(AndroidJUnit4.class)
 
-public class youtubeSearchSucceeded {
+public class youtubeSearchSucceededTest {
 
 
     @Rule
