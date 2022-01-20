@@ -9,4 +9,8 @@ public class UserController {
     public static void registerUser(String username, String email, String password, Context context, IVolleyCallBackMessage iVolleyCallBackMessage){
         UserRepositoryService.registerUser(username,email,password,context,iVolleyCallBackMessage);
     }
+    public static void logInUser(String username, String password, Context context, IVolleyCallBackMessage iVolleyCallBackMessage){
+        UserRepositoryService.logInUser(username,password,context,iVolleyCallBackMessage);
+    }
+
 }

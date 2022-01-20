@@ -25,7 +25,7 @@ import java.util.Map;
 public class UserRepositoryService {
 
     public static void registerUser(String username, String email, String password, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
-        String URL = " https://a1cc-45-139-212-103.ngrok.io/registration";
+        String URL = "https://4309-83-212-59-214.ngrok.io/registration";
 
         JsonObjectRequest request = new JsonObjectRequest
                 (Request.Method.POST, URL, null, new Response.Listener<JSONObject>() {
@@ -62,6 +62,53 @@ public class UserRepositoryService {
                     JSONObject body = new JSONObject();
                     body.put("username",username);
                     body.put("email",email);
+                    body.put("password",password);
+                    return body.toString().getBytes(StandardCharsets.UTF_8);
+                } catch (Exception exception) {
+                    return null;
+                }
+            }
+
+        };
+
+        RequestSingleton.getInstance(context).addToRequestQueue(request);
+    }
+    public static void logInUser(String username, String password, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
+        String URL = "https://4309-83-212-59-214.ngrok.io/login";
+
+        JsonObjectRequest request = new JsonObjectRequest
+                (Request.Method.POST, URL, null, new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            if (response.getString("result").equals("success")) {
+                                volleyCallBackMessage.onSuccess("Registration Succeed");
+                                return;
+                            }
+                        } catch (JSONException e) {
+                            volleyCallBackMessage.onSuccess("JSON error");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        volleyCallBackMessage.onWarning("Connection Error");
+                    }
+                }){
+
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                return headers;
+            }
+
+
+            @Override
+            public byte[] getBody() {
+                try {
+                    JSONObject body = new JSONObject();
+                    body.put("username",username);
                     body.put("password",password);
                     return body.toString().getBytes(StandardCharsets.UTF_8);
                 } catch (Exception exception) {

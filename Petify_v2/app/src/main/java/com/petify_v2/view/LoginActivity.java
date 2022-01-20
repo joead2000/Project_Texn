@@ -6,8 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.petify_v2.R;
+import com.petify_v2.controller.UserController;
+import com.petify_v2.model.Album;
+import com.petify_v2.model.IVolleyCallBackMessage;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,6 +39,34 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         btnLogin.setOnClickListener(v -> {
+            String username = usernameEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
+
+
+
+            if (!username.isEmpty() && !password.isEmpty() ) {
+                UserController.logInUser(username,password, LoginActivity.this, new IVolleyCallBackMessage() {
+                    @Override
+                    public void onSuccess(String message) {
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onSuccessInfo(List<Album> albums) {
+
+                    }
+
+                    @Override
+                    public void onWarning(String message) {
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(String message) {
+                        Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
 
         });
     }
