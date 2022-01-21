@@ -88,11 +88,11 @@ public class UserRepositoryService {
                     public void onResponse(JSONObject response) {
                         try {
                             if (response.getString("result").equals("success")) {
-                                volleyCallBackMessage.onSuccess("Logged in successfully");
+                                volleyCallBackMessage.onSuccess("Logged in successfully",null);
                                 return;
                             }
                         } catch (JSONException e) {
-                            volleyCallBackMessage.onSuccess("JSON error");
+                            volleyCallBackMessage.onSuccess("JSON error",null);
                         }
                     }
                 }, new Response.ErrorListener() {

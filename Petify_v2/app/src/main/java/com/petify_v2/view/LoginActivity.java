@@ -45,11 +45,11 @@ public class LoginActivity extends AppCompatActivity {
 
 
             if (!username.isEmpty() && !password.isEmpty() ) {
-                UserController.logInUser(username,password, LoginActivity.this, new IVolleyCallBackMessage() {
+                UserController.logInUser(username,password, LoginActivity.this, new IVolleyCallBackMessage(){
                     @Override
-                    public void onSuccess(String message) {
+                    public void onSuccess(String message, Object obj) {
                         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
-                        Intent k = new Intent (LoginActivity.this, MainActivity.class); //#######
+                        Intent k = new Intent (LoginActivity.this, MainActivity.class); 
                         startActivity(k);
                     }
 
