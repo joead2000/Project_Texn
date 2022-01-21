@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 //import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ public class ArtistsInfo extends AppCompatActivity {
     Button btnfind1;
     EditText artistname;
     TextView artistInfo;
+    ImageView artistImage;
 //
 //
     @Override
@@ -37,7 +40,7 @@ public class ArtistsInfo extends AppCompatActivity {
 //
        artistname=findViewById(R.id.editTextArtist);
        artistInfo=findViewById(R.id.artistInfo);
-
+       artistImage = findViewById(R.id.imageView);
 
 
 
@@ -49,7 +52,15 @@ public class ArtistsInfo extends AppCompatActivity {
                            ArtistsInfo.this, new IVolleyCallBackMessage() {
 
                         @Override
-                        public void onSuccess(String message) {
+                        public void onSuccess(String message, Object obj) {
+                            Bitmap img = null;
+                            if (obj instanceof Bitmap) {
+                                img = (Bitmap)obj;
+                            }
+
+                            if (img != null)
+                                artistImage.setImageBitmap(img);
+
                             artistInfo.setText(message);
                             //Toast.makeText(ArtistsInfo.this, message, Toast.LENGTH_LONG).show();
 

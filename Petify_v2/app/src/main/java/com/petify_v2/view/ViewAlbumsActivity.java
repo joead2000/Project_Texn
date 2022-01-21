@@ -38,7 +38,7 @@ public class ViewAlbumsActivity extends AppCompatActivity {
                     RequestAlbumInfo.textViewAlbum(nameofartist.getText().toString().trim(),
                             ViewAlbumsActivity.this, new IVolleyCallBackMessage() {
                         @Override
-                        public void onSuccess(String message) {
+                        public void onSuccess(String message, Object obj) {
 
 
                         }

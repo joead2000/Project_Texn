@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
             if (!username.isEmpty() && !password.isEmpty() && ! email.isEmpty()) {
                 UserController.registerUser(username, email, password, RegisterActivity.this, new IVolleyCallBackMessage() {
                     @Override
-                    public void onSuccess(String message) {
+                    public void onSuccess(String message, Object obj) {
                         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                     }
 

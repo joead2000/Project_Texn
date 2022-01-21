@@ -1,7 +1,12 @@
 package com.petify_v2.model;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -17,6 +22,7 @@ import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,22 +31,26 @@ import java.util.Map;
 public class RequestArtistInfo {
 
     public static void textViewAlbum(String artist, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
-        String URL = "https://904a-83-212-59-214.ngrok.io/artistBiography";
+        String URL = "https://99fd-185-44-147-32.ngrok.io/artistBiography";
         System.out.println(URL);
 
         JsonObjectRequest request = new JsonObjectRequest
                 (Request.Method.POST, URL, null, new Response.Listener<JSONObject>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
 
 
                                 String biography = response.getString("artist");
+                                String imgData = response.getString("img");
+                                byte[] buffer = Base64.getDecoder().decode(imgData);
+                                Bitmap resImg = BitmapFactory.decodeByteArray(buffer, 0, buffer.length);
 
-                                volleyCallBackMessage.onSuccess(biography);
+                                volleyCallBackMessage.onSuccess(biography, resImg);
 
                         } catch (JSONException e) {
-                            volleyCallBackMessage.onSuccess("JSON error");
+                            volleyCallBackMessage.onSuccess("JSON error", null);
                         }
 
                     }

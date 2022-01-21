@@ -19,7 +19,7 @@ import java.util.Map;
 public class RequestAlbumInfo {
 
     public static void textViewAlbum(String artist, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
-        String URL = "https://904a-83-212-59-214.ngrok.io/artistAlbums";
+        String URL = "https://4309-83-212-59-214.ngrok.io/artistAlbums";
         System.out.println(URL);
 
         JsonObjectRequest request = new JsonObjectRequest
@@ -31,7 +31,7 @@ public class RequestAlbumInfo {
                             List<Album> albums = JsonAlbumMapper.toAlbums(response);
                             volleyCallBackMessage.onSuccessInfo(albums);
                         } catch (InvalidArgumentException e) {
-                            volleyCallBackMessage.onSuccess(e.getMessage());
+                            volleyCallBackMessage.onSuccess(e.getMessage(), null);
                         }
                     }
                 }, error -> volleyCallBackMessage.onWarning("Connection Error")) {

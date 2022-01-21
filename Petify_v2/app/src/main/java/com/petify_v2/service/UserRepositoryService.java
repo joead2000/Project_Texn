@@ -39,12 +39,12 @@ public class UserRepositoryService {
                     public void onResponse(JSONObject response) {
                         try {
                             if (response.getString("result").equals("success")) {
-                                volleyCallBackMessage.onSuccess("Registration Succeed");
+                                volleyCallBackMessage.onSuccess("Registration Succeed", null);
                                 return;
                             }
                             volleyCallBackMessage.onWarning("Email already exists");
                         } catch (JSONException e) {
-                            volleyCallBackMessage.onSuccess("JSON error");
+                            volleyCallBackMessage.onSuccess("JSON error", null);
                         }
                     }
                 }, new Response.ErrorListener() {
