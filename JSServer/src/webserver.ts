@@ -17,7 +17,7 @@ export async function create() {
         const username = req.body.username
         const password = req.body.password
         postgres.getInstance.login(username, password, () => {
-            res.status(200).send(JSON.stringify({ result: 'fail' }));
+            res.status(100).send(JSON.stringify({ result: 'fail' }));
         }, () => {
             res.status(200).send(JSON.stringify({ result: 'success' }));
         })
@@ -27,7 +27,7 @@ export async function create() {
         const email = req.body.email
         const password = req.body.password
         postgres.getInstance.register(email, username, password, () => {
-            res.status(200).send(JSON.stringify({ result: 'fail' }));
+            res.status(100).send(JSON.stringify({ result: 'fail' }));
         }, () => {
             res.status(200).send(JSON.stringify({ result: 'success' }));
         })
