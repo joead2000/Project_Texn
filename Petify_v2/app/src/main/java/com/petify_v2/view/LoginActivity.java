@@ -49,6 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(String message) {
                         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_LONG).show();
+                        Intent k = new Intent (LoginActivity.this, MainActivity.class); //#######
+                        startActivity(k);
                     }
 
                     @Override
