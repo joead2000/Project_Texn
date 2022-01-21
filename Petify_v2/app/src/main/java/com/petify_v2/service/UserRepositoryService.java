@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserRepositoryService {
-    static String link="https://99fd-185-44-147-32.ngrok.io";
+    static String link="https://7085-185-44-147-32.ngrok.io";
 
     public static void registerUser(String username, String email, String password, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
         String URL = link+"/registration";
