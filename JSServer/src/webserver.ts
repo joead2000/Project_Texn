@@ -22,7 +22,7 @@ export async function create() {
             if (found) {
                 res.status(200).send(JSON.stringify({ result: 'success' }));
             } else {
-                res.status(404).send(JSON.stringify({ result: 'not found' }));
+                res.status(200).send(JSON.stringify({ result: 'not found' }));
             }
         })
     });
@@ -31,7 +31,7 @@ export async function create() {
         const email = req.body.email
         const password = req.body.password
         postgres.getInstance.register(email, username, password, () => {
-            res.status(100).send(JSON.stringify({ result: 'fail' }));
+            res.status(402).send(JSON.stringify({ result: 'fail' }));
         }, () => {
             res.status(200).send(JSON.stringify({ result: 'success' }));
         })
