@@ -25,12 +25,12 @@ export class postgres {
                 errorCallback()
             } else {
                 if (callback)
-                callback()
+                callback(res && res.rows && res.rows.length > 0)
             }
         });
     }
     async register(email: string, username: string, password: string, errorCallback: Function, callback: Function) {
-        const query = "SELECT * FROM users WHERE email=$1 OR password=$2"
+        const query = "SELECT * FROM users WHERE email=$1 OR username=$2"
         const values = [email, username]
 
         await postgres.getInstance.client.query(query, values, (err, res) => {
