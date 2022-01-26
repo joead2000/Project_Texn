@@ -23,6 +23,7 @@ export async function create() {
             } else {
                 res.status(402).send(JSON.stringify({ result: 'fail' }));
             }
+       })
     });
     app.route('/registration').post((req: express.Request, res: express.Response) => {
         const username = req.body.username
