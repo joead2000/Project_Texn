@@ -9,9 +9,20 @@ export class postgres {
     }
 
     async connect() {
-        this.client = new Client();
+        const config = {
+            user: process.env.PGUSER,
+            password: process.env.PGPASSWORD,
+            database: process.env.PGDATABASE,
+            port: process.env.PGPORT,
+            host: process.env.PGHOST,
+            ssl: process.env.PGSSL ? {
+                rejectUnauthorized: false
+            } : false
+        }
+        this.client = new Client(config);
         this.client.connect();
         const res = await this.client.query('SELECT NOW()')
+        console.log(res);
     }
 
     async login(username: string, password: string, errorCallback: Function, callback: Function) {
