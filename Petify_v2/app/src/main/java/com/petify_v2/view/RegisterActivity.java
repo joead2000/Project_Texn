@@ -34,7 +34,8 @@ public class RegisterActivity extends AppCompatActivity {
             String email    = emailregister.getText().toString().trim();
             String password = passwordregister.getText().toString().trim();
 
-            if (!username.isEmpty() && !password.isEmpty() && ! email.isEmpty()) {
+
+            if (!username.isEmpty() && !password.isEmpty() && ! email.isEmpty() && email.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")) {
                 UserController.registerUser(username, email, password, RegisterActivity.this, new IVolleyCallBackMessage() {
                     @Override
                     public void onSuccess(String message, Object obj) {
@@ -56,6 +57,10 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                     }
                 });
+            }
+            else{
+                Toast.makeText(RegisterActivity.this, "Please make sure you entered correct values ", Toast.LENGTH_LONG).show();
+
             }
 
         });
