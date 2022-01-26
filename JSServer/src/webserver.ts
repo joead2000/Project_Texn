@@ -22,7 +22,7 @@ export async function create() {
             if (found) {
                 res.status(200).send(JSON.stringify({ result: 'success' }));
             } else {
-                res.status(200).send(JSON.stringify({ result: 'not found' }));
+                res.status(420).send(JSON.stringify({ result: 'not found' }));
             }
         })
     });
