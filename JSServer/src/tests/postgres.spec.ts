@@ -4,7 +4,8 @@ const p = new postgres();
 p.connect();
 const email = "test@gmail.com"
 const username = "test"
-const _password = "test"
+const _password = "test;drop users;"
+const _password2 = "ttest"
 
 test('test the register, login and forgot password functions', async() => {
     await p.register(email, username, _password, () => {}, () => {});
