@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     Button btngotofind;
     Button btnfindalbum;
     Button openyoutubebtn;
+    Button logoutbtn;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -55,6 +56,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, PlayYoutubeVideos.class));
+            }
+        });
+
+        logoutbtn=findViewById(R.id.logoutbtn);
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
 

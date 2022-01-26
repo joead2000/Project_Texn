@@ -31,7 +31,7 @@ import java.util.Map;
 public class RequestArtistInfo {
 
     public static void textViewAlbum(String artist, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
-        String URL = "https://99fd-185-44-147-32.ngrok.io/artistBiography";
+        String URL = "https://projecttexn.herokuapp.com/artistBiography";
         System.out.println(URL);
 
         JsonObjectRequest request = new JsonObjectRequest

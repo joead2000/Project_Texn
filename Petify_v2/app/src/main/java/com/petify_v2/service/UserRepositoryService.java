@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserRepositoryService {
-    static String link="https://7085-185-44-147-32.ngrok.io";
+    static String link="https://projecttexn.herokuapp.com";
 
     public static void registerUser(String username, String email, String password, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
         String URL = link+"/registration";
@@ -90,6 +90,11 @@ public class UserRepositoryService {
                             if (response.getString("result").equals("success")) {
                                 volleyCallBackMessage.onSuccess("Logged in successfully",null);
                                 return;
+                            }
+                            else{
+                                volleyCallBackMessage.onWarning("Failed to Log in");
+                                return;
+
                             }
                         } catch (JSONException e) {
                             volleyCallBackMessage.onSuccess("JSON error",null);

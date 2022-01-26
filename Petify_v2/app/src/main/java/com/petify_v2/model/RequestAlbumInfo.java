@@ -19,7 +19,7 @@ import java.util.Map;
 public class RequestAlbumInfo {
 
     public static void textViewAlbum(String artist, Context context, IVolleyCallBackMessage volleyCallBackMessage) {
-        String URL = "https://4309-83-212-59-214.ngrok.io/artistAlbums";
+        String URL = "https://projecttexn.herokuapp.com/artistAlbums";
         System.out.println(URL);
 
         JsonObjectRequest request = new JsonObjectRequest
