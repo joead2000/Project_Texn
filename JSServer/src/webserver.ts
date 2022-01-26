@@ -16,14 +16,10 @@ export async function create() {
     app.route('/login').post((req: express.Request, res: express.Response) => {
         const username = req.body.username
         const password = req.body.password
-        postgres.getInstance.login(username, password, () => {
+        postgres.getInstance.register(username, password, () => {
             res.status(402).send(JSON.stringify({ result: 'fail' }));
-        }, (found) => {
-            if (found) {
-                res.status(200).send(JSON.stringify({ result: 'success' }));
-            } else {
-                res.status(402).send(JSON.stringify({ result: 'fail' }));
-            }
+        }, () => {
+            res.status(200).send(JSON.stringify({ result: 'success' }));
         })
     });
     app.route('/registration').post((req: express.Request, res: express.Response) => {
